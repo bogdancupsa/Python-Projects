@@ -1,7 +1,0 @@
-<div class="chat-window">
-  <ul class="messages-list">
-    <li *ngFor="let msg of messages" [ngClass]="{'admin': msg.sender_id === 1, 'client': msg.sender_id !== 1 && !isAdmin, 'admin-msg': isAdmin }">{{msg.message }}</li>
-  </ul>
-  <input [(ngModel)]="message" (keyup.enter)="sendMessage()" placeholder="Type a message...">
-  <button (click)="sendMessage()">Send</button>
-</div>
