@@ -1,0 +1,11 @@
+.entries {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.styled-btn {
+  border-radius: 20px;
+  width: max-content;
+  height: fit-content;
+  background: rgba(234, 118, 255, 0.5);
+}

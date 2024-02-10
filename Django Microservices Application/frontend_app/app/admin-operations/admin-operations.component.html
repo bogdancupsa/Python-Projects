@@ -1,0 +1,58 @@
+<div class="admin-operations-container" *ngIf="isAdmin">
+  <h2>Admin Operations</h2>
+
+  <div class="entries">
+    <app-card *ngFor="let client of clients" [cardData]="client"
+      (editEvent)="editClient($event)" >
+      <button>Edit</button>
+    </app-card>    
+  </div>
+
+  <button class="styled-btn" (click)="goToDevices()">Manage Devices
+    
+  </button>
+
+  <button (click)="openChat()">Open Chat</button>
+
+
+  <div class="new-client-form">
+    <h3>Add New Client</h3>
+    <form (ngSubmit)="addNewClient()" #newClientForm="ngForm">
+      <div class="form-group">
+        <label for="newClientName">Name:</label>
+        <input type="text" id="newClientName" name="newClientName" [(ngModel)]="newClient.name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="newClientRole">Role:</label>
+        <select id="newClientRole" name="newClientRole" [(ngModel)]="newClient.role" required>
+          <option value="admin">Administrator</option>
+          <option value="client">Client</option>
+        </select>
+      </div>
+
+      <button type="submit" [disabled]="!newClientForm.form.valid">Add Client</button>
+    </form>
+  </div>
+
+  <div class="edit-client-form" *ngIf="selectedClient">
+    <h3>Edit Client</h3>
+    <form (ngSubmit)="editClient(selectedClient)" #editClientForm="ngForm">
+      <div class="form-group">
+        <label for="editClientName">Name:</label>
+        <input type="text" id="editClientName" name="editClientName" [(ngModel)]="updatedClient.name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="editClientRole">Role:</label>
+        <select id="editClientRole" name="editClientRole" [(ngModel)]="updatedClient.role" required>
+          <option value="admin">Administrator</option>
+          <option value="client">Client</option>
+        </select>
+      </div>
+
+      <button type="button" (click)="saveChanges()" [disabled]="!editClientForm.form.valid">Save Changes</button>
+    </form>
+  </div>
+
+</div>

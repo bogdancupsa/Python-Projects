@@ -1,0 +1,19 @@
+<div class="entries">
+    <div class="device-card" *ngFor="let device of devices">
+      <div class="device-header">{{ device.description }}</div>
+      <div class="device-field">
+        <div class="device-label">Address:
+        <span>{{ device.address }}</span>
+        </div>
+      </div>
+      <div class="device-field">
+        <div class="device-label">Max Hourly Energy Consumption:
+        <span>{{ device.max_hourly_energy_consumption }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div>
+<button [routerLink]="'/chat'">Chat with Admin</button>
+</div>
