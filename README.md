@@ -7,7 +7,7 @@ Python projects
    * I had implemented a simple IDE using Tkinter. I emphasized memento and obervable design patterns.
 ## 3. PyQt5 app: 
    * I had implemented a ticket selling app using PyQt5. Layered architecture is used.
-## 4. Netorking: 
+## 4. Networking: 
    * I had implemented a network topology using sockets.
 ## 5. Image processing: 
    * I had implement red eye detection and correction.
