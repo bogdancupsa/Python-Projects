@@ -2,7 +2,7 @@
 Python projects
 
 ## 1. Django: 
-  * I had implemented 3 microservices in django: User, Devices and Chat. Sqlite is used as database. Token authentication for the login. Angular for frontend. Web Sockets with redis server Redis for the chat microservice. All the microservices are in docker containers.
+  * I had implemented 3 microservices in django: User, Devices and Chat. Sqlite is used as database. Token authentication for the login. Angular for frontend. Web Sockets with redis server Redis for the chat microservice. Rabbit Mq for communication between microservice. All the microservices are in docker containers.
 ## 2. Tkinter app: 
    * I had implemented a simple IDE using Tkinter. I emphasized memento and obervable design patterns.
 ## 3. PyQt5 app: 
