@@ -10,4 +10,4 @@ Python projects
 ## 4. Networking: 
    * I had implemented a network topology using sockets.
 ## 5. Image processing: 
-   * I had implement red eye detection and correction.
+   * I had implemented red eye detection and correction.
