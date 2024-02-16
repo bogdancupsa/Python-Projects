@@ -1,4 +1,4 @@
-version: '3'
+version: '2.1'
 
 services:
   redis:
@@ -8,6 +8,11 @@ services:
       - '6379:6379'
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   rabbitmq:
     image: "rabbitmq:3-management"
@@ -17,7 +22,12 @@ services:
       - "15672:15672"
     networks:
       - app-network
-
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping", "-q"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      
   user:
     build:
       context: .
@@ -39,8 +49,15 @@ services:
       - '8012:8012'
     volumes:
       - ./device_app/device_app/:/code
+    command: python -m main.rabbit_mq
     networks:
       - app-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      - DJANGO_SETTINGS_MODULE=device_app.settings
+      
 
   frontend:
     build:
@@ -80,10 +97,30 @@ services:
       - '8036:8036'
     volumes:
       - ./monitoring_app/monitoring_app:/code
+    command: python -m main.rabbitmq_consumer
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      - DJANGO_SETTINGS_MODULE=monitoring_app.settings
+      - REDIS_HOST=redis
     networks:
       - app-network
+  
+  desktop:
+    build:
+      context: ./desktop_app
+      dockerfile: Dockerfile
+    networks:
+      - app-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
 
 networks:
   app-network:
     driver: bridge
+
 

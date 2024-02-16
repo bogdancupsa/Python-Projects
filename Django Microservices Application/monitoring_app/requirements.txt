@@ -1,0 +1,14 @@
+asgiref==3.6.0
+Django==4.2
+django-cors-headers==4.3.0
+django-countries==7.5.1
+django-crispy-forms==2.0
+daphne==3.0.2
+djangorestframework==3.14.0
+dsinternals==1.2.4
+impacket==0.9.23
+opencv-python==4.7.0.72
+sqlparse==0.4.3
+requests==2.26.0
+channels==3.0.4
+channels-redis==3.3.1
